@@ -6,7 +6,7 @@
 /*   By: moel-hmo <moel-hmo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 16:45:36 by moel-hmo          #+#    #+#             */
-/*   Updated: 2025/03/05 22:54:01 by moel-hmo         ###   ########.fr       */
+/*   Updated: 2025/03/06 00:06:16 by moel-hmo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,7 @@
 
 int main(int ac, char **av)
 {
-	parsing(ac, av);
+	if (ac > 1)
+		parsing(&av[1]);
+	return (0);
 }

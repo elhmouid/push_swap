@@ -6,17 +6,11 @@
 /*   By: moel-hmo <moel-hmo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 22:42:58 by moel-hmo          #+#    #+#             */
-/*   Updated: 2025/03/05 23:12:32 by moel-hmo         ###   ########.fr       */
+/*   Updated: 2025/03/06 00:36:54 by moel-hmo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-char **ft_split(int ac, char **av)
-{
-	
-}
-
 
 int	ft_atoi(char *str)
 {
@@ -33,9 +27,11 @@ int	ft_atoi(char *str)
 		if (str[index] == 32 || str[index] >= 9 && str[index] <= 13)
 			index++;
 	if (str[index] == '+' || str[index] == '-')
+    {
 		if (str[index] == '-')
 			sign = -1;
-	index++;
+	    index++;
+    }
 	while (str[index])
 	{
 		if(str[index] >= '0' && str[index] <= '9')
@@ -50,24 +46,34 @@ int	ft_isdigit(int c)
 	return (c >= '0' && c <= '9');
 }
 
-void	parsing(int ac, char **av)
+int ft_isspace(char c)
+{
+    return (c == 32 || c == '\t');
+}
+int     check_str(char *str)
+{
+    int i = 0;
+    while (str[i])
+    {
+        if (!ft_isdigit(str[i]) && str[i] != '-' && str[i] != '+'
+            && !ft_isspace(str[i]))
+            return (1);
+        i++;
+    }
+    return (0);
+}
+
+void	parsing(char **av)
 {
 	int i;
 	int j;
 	
 	i = 0;
-	j = 0;
-	if (ac < 2)
-		exit(0);
-	while (av[i++])
-		while (av[i][j++])
-			if (!(ft_isdigit(av[i][j]) || av[i][j] != '+' || av[i][j] != '-' || av[i][j] != '"'))
-				fail_error("Error : Please double check the arguments");
-	i = 0;
-	while (av[i][j])
-	{
-		if (av[i][j] != '"')
-		ft_atoi(av[i]);
-	i++;
-	}
+
+	while (av[i])
+    {
+        
+        printf("%s ---- %d\n", av[i], check_str(av[i]));
+        i++;
+    }
 }
