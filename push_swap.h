@@ -4,7 +4,8 @@
 # include <stdlib.h>
 #include <unistd.h>
 #include <stdio.h>
-void	fail_error(char *str);
+
+void	ft_error(char *str);
 void	ft_putstr_fd(char *str, int fd);
 void    ft_putchar_fd(char c, int fd);
 

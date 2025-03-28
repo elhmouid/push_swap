@@ -6,7 +6,7 @@
 /*   By: moel-hmo <moel-hmo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 22:42:58 by moel-hmo          #+#    #+#             */
-/*   Updated: 2025/03/06 00:36:54 by moel-hmo         ###   ########.fr       */
+/*   Updated: 2025/03/28 18:16:52 by moel-hmo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	ft_atoi(char *str)
 	if (!str[index])
 		return (0);
 	while (str[index])
-		if (str[index] == 32 || str[index] >= 9 && str[index] <= 13)
+		if (str[index] == 32 || (str[index] >= 9 && str[index] <= 13))
 			index++;
 	if (str[index] == '+' || str[index] == '-')
     {
@@ -50,30 +50,42 @@ int ft_isspace(char c)
 {
     return (c == 32 || c == '\t');
 }
-int     check_str(char *str)
-{
-    int i = 0;
-    while (str[i])
-    {
-        if (!ft_isdigit(str[i]) && str[i] != '-' && str[i] != '+'
-            && !ft_isspace(str[i]))
-            return (1);
-        i++;
-    }
-    return (0);
-}
 
-void	parsing(char **av)
+int	check_white_spaces(char **av)
 {
-	int i;
-	int j;
-	
-	i = 0;
+	int i = 0, j = 0;
 
 	while (av[i])
-    {
-        
-        printf("%s ---- %d\n", av[i], check_str(av[i]));
-        i++;
-    }
+	{
+		j = 0;
+		while (ft_isspace(av[i][j]))
+			j++;
+		if (av[i][j] == '\0')
+		{
+			return (1);
+		}
+		i++;
+	}
+	i = 1;
+	j = 0;
+	while (av[i])
+	{
+		while(av[i][j])
+		{
+			if((av[i][j] >= '0' && av[i][j] <= '9') || !(av[i][j] == ' '))
+			{
+				printf("❌ Caractère invalide détecté : av[%d] = \"%s\" (av[%d][%d] = '%c')\n", i, av[i], i, j, av[i][j]);
+				return 1;
+			}
+			j++;
+		}
+		j =0;
+		i++;
+	}
+	return (0);
+}
+void	parsing(char **av)
+{
+	if (check_white_spaces(av))
+		ft_error("Error");
 }
