@@ -6,7 +6,7 @@
 /*   By: moel-hmo <moel-hmo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 22:42:58 by moel-hmo          #+#    #+#             */
-/*   Updated: 2025/04/06 15:27:00 by moel-hmo         ###   ########.fr       */
+/*   Updated: 2025/04/06 16:28:25 by moel-hmo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,12 @@ int check_args(char *str)
 	{
 		if (!ft_isdigit(str[i]) && str[i] != '+'
 			&& str[i] != '-' && !ft_isspace(str[i]))
+			return (1);
+		if ((str[i] == '+' && str[i + 1] == '+')
+			|| (str[i] == '-' && str[i + 1] == '-'))
+			return (1);
+		if ((str[i] == '+' && str[i + 1] == '-')
+			|| (str[i] == '-' && str[i + 1] == '+'))
 			return (1);
 		i++;
 	}
