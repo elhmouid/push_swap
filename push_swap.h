@@ -12,7 +12,7 @@ void	ft_putstr_fd(char *str, int fd);
 void    ft_putchar_fd(char c, int fd);
 
 
-int		ft_atoi(char *str);
+long		ft_atoi(char *str);
 int		ft_isdigit(int c);
 int	basic_parsing(int ac, char **av);
 
@@ -21,15 +21,15 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 
 typedef struct s_list
 {
-	int				value;
+	long			value;
 	struct s_list	*next;
 }	t_list;
 
 void add_back(t_list **stack, t_list *node);
-t_list	*new_node(int value);
+t_list	*new_node(long value);
 void	parse_args(char *arg, t_list **stack);
 int	is_duplicate(t_list *stack);
 
-
+int check_integers(t_list *stack);
 
 # endif

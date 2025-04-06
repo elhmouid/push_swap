@@ -6,39 +6,64 @@
 /*   By: moel-hmo <moel-hmo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 16:45:36 by moel-hmo          #+#    #+#             */
-/*   Updated: 2025/04/06 17:10:33 by moel-hmo         ###   ########.fr       */
+/*   Updated: 2025/04/07 00:49:18 by moel-hmo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-
+void free_stack(t_list **stack)
+{
+	t_list *current;
+	t_list *next;
+	
+	if (!stack || !*stack)
+		return;
+		
+	current = *stack;
+	while (current)
+	{
+		next = current->next;
+		free(current);
+		current = next;
+	}
+	*stack = NULL;
+}
 
 int main(int ac, char **av)
 {
-	int	i;
-	t_list *stack;
-
-	stack = NULL;
-	if (ac <= 1)
-		return (0);
-	if (basic_parsing(ac, ++av))
+    t_list *stack_a;
+    int i;
+    
+    stack_a = NULL;
+    if (ac <= 1)
+        return (0);
+    
+    if (basic_parsing(ac - 1, av + 1))
+    {
+        ft_putstr_fd("Error\n", 2);
+        return (1);
+    }
+    i = 1;
+    while (i < ac)
+    {
+        parse_args(av[i], &stack_a);
+        i++;
+    }
+    if (check_integers(stack_a) || is_duplicate(stack_a))
+    {
+        ft_putstr_fd("Error\n", 2);
+        free_stack(&stack_a);
+        return (1);
+    }
+    
+	t_list *tmp;
+	tmp = stack_a;
+	while (tmp)
 	{
-		puts("Error");
-		return (1);
+		printf("%ld\t\n", tmp->value );
+		tmp = tmp->next;
 	}
-	i = 1;
-	while (i < ac)
-	{
-		parse_args(av[i], &stack);
-		i++;	
-	}
-	// t_list *tmp = stack;
-	// while (tmp)
-	// {
-	// 	tmp = tmp->next;
-	// 	printf("%d\n", tmp->value);
-	// }
-	return (0);
-	// printf("%d  ====== %s \n", ac, av[0]);
+	free_stack(&stack_a);
+    return (0);
 }

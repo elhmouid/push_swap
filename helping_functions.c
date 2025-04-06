@@ -6,7 +6,7 @@
 /*   By: moel-hmo <moel-hmo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 22:44:33 by moel-hmo          #+#    #+#             */
-/*   Updated: 2025/04/06 14:51:51 by moel-hmo         ###   ########.fr       */
+/*   Updated: 2025/04/07 00:53:16 by moel-hmo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,15 @@ void    ft_putchar_fd(char c, int fd)
 {
     write(fd, &c, 1);
 }
+int	ft_strlen(char *str)
+{
+	int i;
 
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
+}
 void    ft_putstr_fd(char *str, int fd)
 {
     int i;
@@ -51,7 +59,7 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 	return (j);
 }
 
-t_list	*new_node(int value)
+t_list	*new_node(long value)
 {
 	t_list *node = malloc(sizeof(t_list));
 	if (!node)

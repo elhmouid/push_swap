@@ -6,7 +6,7 @@
 /*   By: moel-hmo <moel-hmo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 22:42:58 by moel-hmo          #+#    #+#             */
-/*   Updated: 2025/04/06 17:10:50 by moel-hmo         ###   ########.fr       */
+/*   Updated: 2025/04/07 00:53:51 by moel-hmo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int	overflow_check(int sign)
 		return (0);
 }
 
-int	ft_atoi(char *str)
+long	ft_atoi(char *str)
 {
 	long	result;
 	int		sign;
@@ -90,6 +90,9 @@ int check_args(char *str)
 		if ((str[i] == '+' && str[i + 1] == '-')
 			|| (str[i] == '-' && str[i + 1] == '+'))
 			return (1);
+		if (ft_isdigit(str[i - 1]) && (str[i] == '+'
+			|| str[i] == '-'))
+			return (1);
 		i++;
 	}
 	return (0);
@@ -99,7 +102,7 @@ void	parse_args(char *arg, t_list **stack)
 {
 	char	**split;
 	int		i;
-	int		value;
+	long	value;
 	t_list	*node;
 
 	i = 0;
@@ -123,6 +126,22 @@ void	parse_args(char *arg, t_list **stack)
 	}
 	free(split);
 }
+int check_integers(t_list *stack)
+{
+    t_list *current;
+    long	value;
+
+    current = stack;
+    while (current)
+    {
+        value = current->value;
+		// printf("")
+        if (value < INT_MIN || value > INT_MAX)
+            return (1);
+        current = current->next;
+    }
+    return (0);
+}
 
 int	basic_parsing(int ac, char **av)
 {
@@ -139,11 +158,24 @@ int	basic_parsing(int ac, char **av)
 			return (1);
 		i++;
 	}
-	i = 1;
-	// while (i < ac)
-	// {
-	// 	i++;
-	// }
+	return (0);
+}
+int	is_duplicate(t_list *stack)
+{
+	t_list *current;
+	t_list *check;
 	
+	current = stack;
+	while (current)
+	{
+		check = current->next;
+		while (check)
+		{
+			if (current->value == check->value)
+				return (1);
+			check = check->next;
+		}
+		current = current->next;
+	}
 	return (0);
 }
