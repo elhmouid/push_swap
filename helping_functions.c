@@ -6,7 +6,7 @@
 /*   By: moel-hmo <moel-hmo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 22:44:33 by moel-hmo          #+#    #+#             */
-/*   Updated: 2025/04/06 13:04:19 by moel-hmo         ###   ########.fr       */
+/*   Updated: 2025/04/06 14:51:51 by moel-hmo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,3 +50,29 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 	dst[i] = '\0';
 	return (j);
 }
+
+t_list	*new_node(int value)
+{
+	t_list *node = malloc(sizeof(t_list));
+	if (!node)
+		return (NULL);
+	node->value = value;
+	node->next = NULL;
+	return (node);
+}
+
+void add_back(t_list **stack, t_list *node)
+{
+	t_list	*tmp;
+
+	if (!*stack)
+	{
+		*stack = node;
+		return;
+	}
+	tmp = *stack;
+	while (tmp->next)
+		tmp = tmp->next;
+	tmp->next = node;
+}
+

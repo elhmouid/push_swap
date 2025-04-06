@@ -6,7 +6,7 @@
 /*   By: moel-hmo <moel-hmo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 22:42:58 by moel-hmo          #+#    #+#             */
-/*   Updated: 2025/04/06 13:34:10 by moel-hmo         ###   ########.fr       */
+/*   Updated: 2025/04/06 15:27:00 by moel-hmo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,19 +81,41 @@ int check_args(char *str)
 	return (0);
 }
 
-int	spliting_args(char *str)
+void	parse_args(char *arg, t_list **stack)
 {
-	t_list	array;
-	int	i;
+	char	**split;
+	int		i = 0;
+	int		value;
+	t_list	*node;
 
-	i = 0;
-	array = ft_split(str, ' ');
-	
+	split = ft_split(arg);
+	if (!split)
+		return;
+	while (split[i])
+	{
+		value = ft_atoi(split[i]);
+		node = new_node(value);
+		if (!node)
+		{
+			while (split[i])
+				free(split[i++]);
+			free(split);
+			return;
+		}
+		add_back(stack, node);
+		free(split[i]);
+		i++;
+	}
+	free(split);
 }
 
 int	basic_parsing(int ac, char **av)
 {
-	int i = 0;
+	int	i;
+	t_list *stack;
+	
+	i = 0;
+	stack = NULL;
 	while (av[i])
 	{
 		if (empty_string(av[i]))
@@ -102,5 +124,11 @@ int	basic_parsing(int ac, char **av)
 			return (1);
 		i++;
 	}
+	i = 1;
+	// while (i < ac)
+	// {
+	// 	i++;
+	// }
+	
 	return (0);
 }

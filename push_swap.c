@@ -6,7 +6,7 @@
 /*   By: moel-hmo <moel-hmo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 16:45:36 by moel-hmo          #+#    #+#             */
-/*   Updated: 2025/04/06 13:06:29 by moel-hmo         ###   ########.fr       */
+/*   Updated: 2025/04/06 15:20:42 by moel-hmo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,10 @@
 
 int main(int ac, char **av)
 {
-	// t_stack *a;
-	// t_stack *b
+	int	i;
+	t_list *stack;
 
+	stack = NULL;
 	if (ac <= 1)
 		return (0);
 	if (basic_parsing(ac, ++av))
@@ -26,6 +27,18 @@ int main(int ac, char **av)
 		puts("Error");
 		return (1);
 	}
+	i = 1;
+	while (i < ac)
+	{
+		parse_args(av[i], &stack);
+		i++;	
+	}
+	// t_list *tmp = stack;
+	// while (tmp)
+	// {
+	// 	tmp = tmp->next;
+	// 	printf("%d\n", tmp->value);
+	// }
 	return (0);
 	// printf("%d  ====== %s \n", ac, av[0]);
 }

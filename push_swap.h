@@ -15,14 +15,19 @@ int		ft_atoi(char *str);
 int		ft_isdigit(int c);
 int	basic_parsing(int ac, char **av);
 
-char	**ft_split(char const *s, char c);
+char	**ft_split(char const *s);
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 
 typedef struct s_list
 {
-    int     *arr;
-    char    **array;
-} t_list;
+	int				value;
+	struct s_list	*next;
+}	t_list;
+
+void add_back(t_list **stack, t_list *node);
+t_list	*new_node(int value);
+void	parse_args(char *arg, t_list **stack);
+
 
 
 # endif
