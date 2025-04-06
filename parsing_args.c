@@ -6,39 +6,47 @@
 /*   By: moel-hmo <moel-hmo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 22:42:58 by moel-hmo          #+#    #+#             */
-/*   Updated: 2025/04/06 16:28:25 by moel-hmo         ###   ########.fr       */
+/*   Updated: 2025/04/06 17:10:50 by moel-hmo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+static int	overflow_check(int sign)
+{
+	if (sign == 1)
+		return (-1);
+	else
+		return (0);
+}
+
 int	ft_atoi(char *str)
 {
-	int index;
-	int sign;
-	int number;
+	long	result;
+	int		sign;
+	int		i;
 
-	index = 0;
+	result = 0;
 	sign = 1;
-	number = 0;
-	if (!str[index])
+	i = 0;
+	if (!str[i])
 		return (0);
-	while (str[index])
-		if (str[index] == 32 || (str[index] >= 9 && str[index] <= 13))
-			index++;
-	if (str[index] == '+' || str[index] == '-')
-    {
-		if (str[index] == '-')
-			sign = -1;
-	    index++;
-    }
-	while (str[index])
+	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
+		i++;
+	if (str[i] == '-' || str[i] == '+')
 	{
-		if(str[index] >= '0' && str[index] <= '9')
-			number = number * 10 + (str[index] - 48);
-		index++;
+		if (str[i] == '-')
+			sign = -1;
+		i++;
 	}
-	return (number * sign);
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		if (result > (LONG_MAX - (str[i] - '0')) / 10)
+			return (overflow_check(sign));
+		result = (result * 10) + (str[i] - '0');
+		i++;
+	}
+	return (result * sign);
 }
 
 int	ft_isdigit(int c)
@@ -90,12 +98,13 @@ int check_args(char *str)
 void	parse_args(char *arg, t_list **stack)
 {
 	char	**split;
-	int		i = 0;
+	int		i;
 	int		value;
 	t_list	*node;
 
+	i = 0;
 	split = ft_split(arg);
-	if (!split)
+	if (!split || !stack)
 		return;
 	while (split[i])
 	{

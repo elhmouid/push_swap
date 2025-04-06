@@ -6,7 +6,7 @@
 /*   By: moel-hmo <moel-hmo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 16:45:36 by moel-hmo          #+#    #+#             */
-/*   Updated: 2025/04/06 16:32:10 by moel-hmo         ###   ########.fr       */
+/*   Updated: 2025/04/06 17:10:33 by moel-hmo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,5 @@ int main(int ac, char **av)
 	// 	printf("%d\n", tmp->value);
 	// }
 	return (0);
+	// printf("%d  ====== %s \n", ac, av[0]);
 }

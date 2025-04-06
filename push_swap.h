@@ -4,6 +4,7 @@
 # include <stdlib.h>
 #include <unistd.h>
 #include <stdio.h>
+#include <limits.h>
 # include <stdlib.h>
 
 void	ft_error(char *str);
@@ -27,6 +28,7 @@ typedef struct s_list
 void add_back(t_list **stack, t_list *node);
 t_list	*new_node(int value);
 void	parse_args(char *arg, t_list **stack);
+int	is_duplicate(t_list *stack);
 
 
 

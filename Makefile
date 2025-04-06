@@ -3,16 +3,18 @@ CC      = cc
 SRC     = ft_split.c helping_functions.c parsing_args.c push_swap.c
 NAME    = push_swap
 OBJ_DIR = obj/
-OBJ     = $(addprefix $(OBJ_DIR), $(SRC:.c=.o))
-
-$(shell mkdir -p $(OBJ_DIR))
+OBJ     = $(addprefix $(OBJ_DIR), $(notdir $(SRC:.c=.o)))
+HEADERS = push_swap.h
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
+$(OBJ_DIR):
+	mkdir -p $(OBJ_DIR)
+
+$(NAME): $(OBJ_DIR) $(OBJ)
 	$(CC) $(OBJ) -o $(NAME)
 
-$(OBJ_DIR)%.o: %.c
+$(OBJ_DIR)%.o: %.c $(HEADERS) | $(OBJ_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
