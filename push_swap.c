@@ -6,7 +6,7 @@
 /*   By: moel-hmo <moel-hmo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 16:45:36 by moel-hmo          #+#    #+#             */
-/*   Updated: 2025/04/07 23:55:25 by moel-hmo         ###   ########.fr       */
+/*   Updated: 2025/04/07 23:56:43 by moel-hmo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,7 @@ int main(int ac, char **av)
         return (0);
     
     if (basic_parsing(++av))
-    {
-        ft_putstr_fd("Error\n", 2);
-        return (1);
-    }
+		ft_error("Error");
     i = 0;
     while (i < ac)
     {
