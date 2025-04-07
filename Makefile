@@ -1,6 +1,6 @@
 CC      = cc
 # CFLAGS  = -Wall -Wextra -Werror
-SRC     = ft_split.c helping_functions.c parsing_args.c push_swap.c
+SRC     = ft_split.c list_utils.c parsing.c push_swap.c conversion.c string_utils.c
 NAME    = push_swap
 OBJ_DIR = obj/
 OBJ     = $(addprefix $(OBJ_DIR), $(notdir $(SRC:.c=.o)))

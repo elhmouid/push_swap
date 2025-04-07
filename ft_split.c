@@ -6,12 +6,11 @@
 /*   By: moel-hmo <moel-hmo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 12:58:18 by moel-hmo          #+#    #+#             */
-/*   Updated: 2025/04/06 13:52:27 by moel-hmo         ###   ########.fr       */
+/*   Updated: 2025/04/07 21:13:31 by moel-hmo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
 
 static void	free_split(char **str, int j)
 {

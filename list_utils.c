@@ -1,64 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   helping_functions.c                                :+:      :+:    :+:   */
+/*   list_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: moel-hmo <moel-hmo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 22:44:33 by moel-hmo          #+#    #+#             */
-/*   Updated: 2025/04/07 20:36:26 by moel-hmo         ###   ########.fr       */
+/*   Updated: 2025/04/07 21:17:13 by moel-hmo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	ft_error(char *str)
-{
-	ft_putstr_fd(str, 2);
-	exit (1);
-}
-
-void    ft_putchar_fd(char c, int fd)
-{
-    write(fd, &c, 1);
-}
-int	ft_strlen(char *str)
-{
-	int i;
-
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
-}
-void    ft_putstr_fd(char *str, int fd)
-{
-    int i;
-
-    i = 0;
-    while (str[i])
-        ft_putchar_fd(str[i++], fd);
-}
-
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
-{
-	size_t	i;
-	size_t	j;
-
-	i = 0;
-	j = 0;
-	while (src[j])
-		j++;
-	if (dstsize == 0)
-		return (j);
-	while (src[i] && i < dstsize - 1)
-	{
-		dst[i] = src[i];
-		i++;
-	}
-	dst[i] = '\0';
-	return (j);
-}
 
 t_list	*new_node(long value)
 {
@@ -85,3 +37,31 @@ void add_back(t_list **stack, t_list *node)
 	tmp->next = node;
 }
 
+void	parse_args(char *arg, t_list **stack)
+{
+	char	**split;
+	int		i;
+	long	value;
+	t_list	*node;
+
+	i = 0;
+	split = ft_split(arg);
+	if (!split || !stack)
+		return;
+	while (split[i])
+	{
+		value = ft_atoi(split[i]);
+		node = new_node(value);
+		if (!node)
+		{
+			while (split[i])
+				free(split[i++]);
+			free(split);
+			return;
+		}
+		add_back(stack, node);
+		free(split[i]);
+		i++;
+	}
+	free(split);
+}
