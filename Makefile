@@ -1,5 +1,5 @@
 CC      = cc
-# CFLAGS  = -Wall -Wextra -Werror
+CFLAGS  = -Wall -Wextra -Werror
 SRC     = ft_split.c list_utils.c parsing.c push_swap.c conversion.c string_utils.c
 NAME    = push_swap
 OBJ_DIR = obj/

@@ -24,7 +24,7 @@ void add_back(t_list **stack, t_list *node);
 void	parse_args(char *arg, t_list **stack);
 
 int check_args(char *str);
-int	basic_parsing(int ac, char **av);
+int	basic_parsing(char **av);
 int	empty_string(char *str);
 int		ft_isdigit(int c);
 int ft_isspace(char c);

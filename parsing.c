@@ -6,7 +6,7 @@
 /*   By: moel-hmo <moel-hmo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 22:42:58 by moel-hmo          #+#    #+#             */
-/*   Updated: 2025/04/07 21:11:25 by moel-hmo         ###   ########.fr       */
+/*   Updated: 2025/04/07 23:53:12 by moel-hmo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,11 @@ int check_args(char *str)
 	return (0);
 }
 
-int	basic_parsing(int ac, char **av)
+int	basic_parsing(char **av)
 {
 	int	i;
-	t_list *stack;
 	
 	i = 0;
-	stack = NULL;
 	while (av[i])
 	{
 		if (empty_string(av[i]))
