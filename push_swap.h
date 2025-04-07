@@ -31,5 +31,8 @@ void	parse_args(char *arg, t_list **stack);
 int	is_duplicate(t_list *stack);
 
 int check_integers(t_list *stack);
+int	ft_strlen(char *str);
+
+int	check_len(t_list *stack);
 
 # endif

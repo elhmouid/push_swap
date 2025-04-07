@@ -6,7 +6,7 @@
 /*   By: moel-hmo <moel-hmo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 22:42:58 by moel-hmo          #+#    #+#             */
-/*   Updated: 2025/04/07 00:53:51 by moel-hmo         ###   ########.fr       */
+/*   Updated: 2025/04/07 19:52:40 by moel-hmo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,43 @@ void	parse_args(char *arg, t_list **stack)
 	}
 	free(split);
 }
+static int	count_digits(long value)
+{
+	int	len;
+
+	len = 0;
+	if (value == 0)
+		return (1);
+	if (value < 0)
+	{
+		len++;
+		value *= -1;
+	}
+	while (value > 0)
+	{
+		value /= 10;
+		len++;
+	}
+	return (len);
+}
+
+int	check_len(t_list *stack)
+{
+	t_list	*current;
+	int		len;
+
+	current = stack;
+	while (current)
+	{
+		len = count_digits(current->value);
+		if ((current->value < 0 && len > 11) || 
+			(current->value >= 0 && len > 10))
+			return (1);
+		current = current->next;
+	}
+	return (0);
+}
+
 int check_integers(t_list *stack)
 {
     t_list *current;
@@ -135,7 +172,6 @@ int check_integers(t_list *stack)
     while (current)
     {
         value = current->value;
-		// printf("")
         if (value < INT_MIN || value > INT_MAX)
             return (1);
         current = current->next;

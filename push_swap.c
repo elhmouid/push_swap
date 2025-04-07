@@ -6,7 +6,7 @@
 /*   By: moel-hmo <moel-hmo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 16:45:36 by moel-hmo          #+#    #+#             */
-/*   Updated: 2025/04/07 00:49:18 by moel-hmo         ###   ########.fr       */
+/*   Updated: 2025/04/07 19:38:58 by moel-hmo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,13 @@ int main(int ac, char **av)
         parse_args(av[i], &stack_a);
         i++;
     }
-    if (check_integers(stack_a) || is_duplicate(stack_a))
-    {
-        ft_putstr_fd("Error\n", 2);
-        free_stack(&stack_a);
-        return (1);
-    }
+    check_len(stack_a);
+    if (check_integers(stack_a) || is_duplicate(stack_a) || check_len(stack_a))
+	{
+		ft_putstr_fd("Error\n", 2);
+		free_stack(&stack_a);
+		return (1);
+	}
     
 	t_list *tmp;
 	tmp = stack_a;
