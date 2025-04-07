@@ -6,7 +6,7 @@
 /*   By: moel-hmo <moel-hmo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 21:03:14 by moel-hmo          #+#    #+#             */
-/*   Updated: 2025/04/07 21:13:48 by moel-hmo         ###   ########.fr       */
+/*   Updated: 2025/04/07 23:48:30 by moel-hmo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,29 +18,66 @@ long ft_atoi(char *str)
     int sign;
     int i;
     int j;
-    char digit_str[20];
+    char digit_str[20]; // Buffer to hold just the digits
 
     result = 0;
     sign = 1;
     i = 0;
     j = 0;
+
+    if (!str[i])
+        return (0);
+    
+    // Handle whitespace
+    while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
+        i++;
+    
+    // Handle sign
     if (str[i] == '-' || str[i] == '+')
     {
         if (str[i] == '-')
             sign = -1;
         i++;
     }
+    
+    // Skip leading zeros
     while (str[i] == '0')
         i++;
+    
+    // Extract just the digits to a buffer
     while (str[i] >= '0' && str[i] <= '9' && j < 19)
-        digit_str[j++] = str[i++];
+    {
+        digit_str[j] = str[i];
+        i++;
+        j++;
+    }
     digit_str[j] = '\0';
+    
+    // Check digit length for potential overflow
     if ((sign == 1 && ft_strlen(digit_str) > 10) || 
         (sign == -1 && ft_strlen(digit_str) > 10))
-		ft_error("Error");
+    {
+        if (sign == 1)
+            return (LONG_MAX);
+        else
+            return (LONG_MIN);
+    }
+    
+    // Convert the valid digits to a number
     i = 0;
-    while (digit_str[i++])
+    while (digit_str[i])
+    {
+        if (result > (LONG_MAX - (digit_str[i] - '0')) / 10)
+        {
+            if (sign == 1)
+                return (LONG_MAX);
+            else
+                return (LONG_MIN);
+        }
         result = (result * 10) + (digit_str[i] - '0');
+        i++;
+    }
+    
     return (result * sign);
 }
 
