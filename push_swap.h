@@ -33,6 +33,7 @@ int	is_duplicate(t_list *stack);
 int check_integers(t_list *stack);
 int	ft_strlen(char *str);
 
-int	check_len(t_list *stack);
+void	ft_error(char *str);
+// int	check_len(t_list *stack);
 
 # endif

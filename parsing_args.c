@@ -6,47 +6,42 @@
 /*   By: moel-hmo <moel-hmo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 22:42:58 by moel-hmo          #+#    #+#             */
-/*   Updated: 2025/04/07 19:52:40 by moel-hmo         ###   ########.fr       */
+/*   Updated: 2025/04/07 20:36:10 by moel-hmo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	overflow_check(int sign)
+long ft_atoi(char *str)
 {
-	if (sign == 1)
-		return (-1);
-	else
-		return (0);
-}
+    long result;
+    int sign;
+    int i;
+    int j;
+    char digit_str[20];
 
-long	ft_atoi(char *str)
-{
-	long	result;
-	int		sign;
-	int		i;
-
-	result = 0;
-	sign = 1;
-	i = 0;
-	if (!str[i])
-		return (0);
-	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
-		i++;
-	if (str[i] == '-' || str[i] == '+')
-	{
-		if (str[i] == '-')
-			sign = -1;
-		i++;
-	}
-	while (str[i] >= '0' && str[i] <= '9')
-	{
-		if (result > (LONG_MAX - (str[i] - '0')) / 10)
-			return (overflow_check(sign));
-		result = (result * 10) + (str[i] - '0');
-		i++;
-	}
-	return (result * sign);
+    result = 0;
+    sign = 1;
+    i = 0;
+    j = 0;
+    if (str[i] == '-' || str[i] == '+')
+    {
+        if (str[i] == '-')
+            sign = -1;
+        i++;
+    }
+    while (str[i] == '0')
+        i++;
+    while (str[i] >= '0' && str[i] <= '9' && j < 19)
+        digit_str[j++] = str[i++];
+    digit_str[j] = '\0';
+    if ((sign == 1 && ft_strlen(digit_str) > 10) || 
+        (sign == -1 && ft_strlen(digit_str) > 10))
+		ft_error("Error");
+    i = 0;
+    while (digit_str[i++])
+        result = (result * 10) + (digit_str[i] - '0');
+    return (result * sign);
 }
 
 int	ft_isdigit(int c)
@@ -126,42 +121,43 @@ void	parse_args(char *arg, t_list **stack)
 	}
 	free(split);
 }
-static int	count_digits(long value)
-{
-	int	len;
 
-	len = 0;
-	if (value == 0)
-		return (1);
-	if (value < 0)
-	{
-		len++;
-		value *= -1;
-	}
-	while (value > 0)
-	{
-		value /= 10;
-		len++;
-	}
-	return (len);
-}
+// static int	count_digits(long value)
+// {
+// 	int	len;
 
-int	check_len(t_list *stack)
-{
-	t_list	*current;
-	int		len;
+// 	len = 0;
+// 	if (value == 0)
+// 		return (1);
+// 	if (value < 0)
+// 	{
+// 		len++;
+// 		value *= -1;
+// 	}
+// 	while (value > 0)
+// 	{
+// 		value /= 10;
+// 		len++;
+// 	}
+// 	return (len);
+// }
 
-	current = stack;
-	while (current)
-	{
-		len = count_digits(current->value);
-		if ((current->value < 0 && len > 11) || 
-			(current->value >= 0 && len > 10))
-			return (1);
-		current = current->next;
-	}
-	return (0);
-}
+// int	check_len(t_list *stack)
+// {
+// 	t_list	*current;
+// 	int		len;
+
+// 	current = stack;
+// 	while (current)
+// 	{
+// 		len = count_digits(current->value);
+// 		if ((current->value < 0 && len > 11) || 
+// 			(current->value >= 0 && len > 10))
+// 			return (1);
+// 		current = current->next;
+// 	}
+// 	return (0);
+// }
 
 int check_integers(t_list *stack)
 {

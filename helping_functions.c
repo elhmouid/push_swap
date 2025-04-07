@@ -6,7 +6,7 @@
 /*   By: moel-hmo <moel-hmo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 22:44:33 by moel-hmo          #+#    #+#             */
-/*   Updated: 2025/04/07 00:53:16 by moel-hmo         ###   ########.fr       */
+/*   Updated: 2025/04/07 20:36:26 by moel-hmo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	ft_error(char *str)
 {
 	ft_putstr_fd(str, 2);
+	exit (1);
 }
 
 void    ft_putchar_fd(char c, int fd)
