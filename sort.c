@@ -6,7 +6,7 @@
 /*   By: moel-hmo <moel-hmo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 00:11:18 by moel-hmo          #+#    #+#             */
-/*   Updated: 2025/04/08 00:19:12 by moel-hmo         ###   ########.fr       */
+/*   Updated: 2025/04/10 00:32:26 by moel-hmo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,22 +72,18 @@ void	move_min_to_top(t_list **stack_a)
 	min = find_min(*stack_a);
 	min_pos = find_position(*stack_a, min->value);
 	size = stack_size(*stack_a);
-
 	if (min_pos <= size / 2)
 	{
-		// Move up using rotate
 		while (min_pos-- > 0)
 			rotate(stack_a, 'a');
 	}
 	else
 	{
-		// Move up using reverse rotate
 		while (min_pos++ < size)
 			reverse_rotate(stack_a, 'a');
 	}
 }
 
-// Sort small stack (up to 5 elements)
 void	sort_small(t_list **stack_a, t_list **stack_b, int size)
 {
 	if (size == 2)
@@ -96,17 +92,12 @@ void	sort_small(t_list **stack_a, t_list **stack_b, int size)
 		sort_three(stack_a);
 	else if (size <= 5)
 	{
-		// Push smallest elements to stack_b
 		while (stack_size(*stack_a) > 3)
 		{
 			move_min_to_top(stack_a);
 			push(stack_a, stack_b, 'b');
 		}
-		
-		// Sort remaining 3 elements in stack_a
 		sort_three(stack_a);
-		
-		// Push back elements from stack_b
 		while (*stack_b)
 			push(stack_b, stack_a, 'a');
 	}

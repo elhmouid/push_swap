@@ -6,7 +6,7 @@
 /*   By: moel-hmo <moel-hmo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 00:11:05 by moel-hmo          #+#    #+#             */
-/*   Updated: 2025/04/08 00:29:34 by moel-hmo         ###   ########.fr       */
+/*   Updated: 2025/04/09 23:46:19 by moel-hmo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ int	is_sorted(t_list *stack)
 	return (1);
 }
 
-// Find minimum value in stack
 t_list	*find_min(t_list *stack)
 {
 	t_list	*min;
