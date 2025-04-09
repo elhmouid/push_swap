@@ -6,7 +6,7 @@
 /*   By: moel-hmo <moel-hmo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 16:45:36 by moel-hmo          #+#    #+#             */
-/*   Updated: 2025/04/07 23:56:43 by moel-hmo         ###   ########.fr       */
+/*   Updated: 2025/04/10 00:37:31 by moel-hmo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,37 +30,56 @@ void free_stack(t_list **stack)
 	*stack = NULL;
 }
 
-int main(int ac, char **av)
+void	sort_stack(t_list **stack_a, t_list **stack_b)
 {
-    t_list *stack_a;
-    int i;
-    
-    stack_a = NULL;
-    if (ac <= 1)
-        return (0);
-    
-    if (basic_parsing(++av))
-		ft_error("Error");
-    i = 0;
-    while (i < ac)
-    {
-        parse_args(av[i], &stack_a);
-        i++;
-    }
-    // check_len(stack_a);
-    if (check_integers(stack_a) || is_duplicate(stack_a))
+	int	size;
+	
+	size = stack_size(*stack_a);
+	
+	// If already sorted, do nothing
+	if (is_sorted(*stack_a))
+		return;
+	
+	// Different sorting strategies based on stack size
+	if (size <= 5)
+		sort_small(stack_a, stack_b, size);
+	else
+		sort_large(stack_a, stack_b);
+}
+
+int	main(int ac, char **av)
+{
+	t_list	*stack_a;
+	t_list	*stack_b;
+	int		i;
+	
+	stack_a = NULL;
+	stack_b = NULL;
+	if (ac <= 1)
+		return (0);
+	
+	if (basic_parsing(av + 1))
+	{
+		ft_putstr_fd("Error\n", 2);
+		return (1);
+	}
+	i = 1;
+	while (i < ac)
+	{
+		parse_args(av[i], &stack_a);
+		i++;
+	}
+	
+	if (check_integers(stack_a) || is_duplicate(stack_a))
 	{
 		ft_putstr_fd("Error\n", 2);
 		free_stack(&stack_a);
 		return (1);
 	}
-	t_list *tmp;
-	tmp = stack_a;
-	while (tmp)
-	{
-		printf("%ld\t\n", tmp->value );
-		tmp = tmp->next;
-	}
+	
+	sort_stack(&stack_a, &stack_b);
+	
 	free_stack(&stack_a);
-    return (0);
+	free_stack(&stack_b);
+	return (0);
 }
