@@ -6,7 +6,7 @@
 /*   By: moel-hmo <moel-hmo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 16:45:36 by moel-hmo          #+#    #+#             */
-/*   Updated: 2025/04/10 23:46:48 by moel-hmo         ###   ########.fr       */
+/*   Updated: 2025/04/11 00:14:57 by moel-hmo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	main(int ac, char **av)
 		return (0);
 	if (basic_parsing(av + 1))
 		ft_error("Error");
-	i = 1;
+	i = 0;
 	while (i++ < ac)
 		parse_args(av[i], &stack_a);
 	if (check_integers(stack_a) || is_duplicate(stack_a))
