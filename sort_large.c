@@ -130,14 +130,14 @@ void push_back_to_a(t_list **stack_a, t_list **stack_b)
         push(stack_b, stack_a, 'a');
     }
 }
-void print_stack(t_list *stack)
-{
-    t_list *current = stack;
+// void print_stack(t_list *stack)
+// {
+//     t_list *current = stack;
     
-    while (current)
-    {
-        fprintf(stderr, "Value: %ld, Index: %d\n", current->value, current->index);
-        current = current->next;
-    }
-}
+//     while (current)
+//     {
+//         fprintf(stderr, "Value: %ld, Index: %d\n", current->value, current->index);
+//         current = current->next;
+//     }
+// }
 

@@ -6,7 +6,7 @@
 /*   By: moel-hmo <moel-hmo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 22:44:33 by moel-hmo          #+#    #+#             */
-/*   Updated: 2025/04/10 03:53:22 by moel-hmo         ###   ########.fr       */
+/*   Updated: 2025/04/10 23:48:19 by moel-hmo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_list	*new_node(long value)
 	return (node);
 }
 
-void add_back(t_list **stack, t_list *node)
+void	add_back(t_list **stack, t_list *node)
 {
 	t_list	*tmp;
 
