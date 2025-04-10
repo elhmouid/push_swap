@@ -75,7 +75,7 @@ int		get_efficient_direction(t_list *stack, int chunk_start, int chunk_end);
 void	push_chunks_to_b(t_list **stack_a, t_list **stack_b, int size);
 void	move_to_top(t_list **stack, int chunk_start, int chunk_end, int direction);
 void	push_back_to_a(t_list **stack_a, t_list **stack_b);
-long	find_max_value(t_list *stack);
+int 	find_max_value(t_list *stack);
 
 
 void print_stack(t_list *stack);
