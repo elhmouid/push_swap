@@ -1,122 +1,89 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   sort_large.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: moel-hmo <moel-hmo@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/10 00:34:56 by moel-hmo          #+#    #+#             */
-/*   Updated: 2025/04/10 00:35:50 by moel-hmo         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "push_swap.h"
 
-// Get index of value in sorted array
-int	get_index(long *sorted, long value, int size)
-{
-	int	i;
+// void set_index(t_list *stack, int index, int min)
+// {
+//     t_list *tmp;
 
-	i = 0;
-	while (i < size)
-	{
-		if (sorted[i] == value)
-			return (i);
-		i++;
-	}
-	return (-1);
+//     tmp = stack;
+//     while (tmp)
+//     {
+//         if (tmp->value == min)
+//             tmp->index = index;
+//         tmp = tmp->next;
+//     }
+// }
+
+
+void index_stack(t_list *stack)
+{
+    int s = stack_size(stack);
+    int index = 0;
+    t_list *tmp = stack;
+    t_list *tr = NULL;
+
+    while (s)
+    {
+        int min = INT_MAX;
+
+        tmp = stack;
+
+        while (tmp)
+        {
+            if (tmp->index == -1)
+            {
+                if (tmp->value <= min)
+                {
+                    tr = tmp;
+                    min = tmp->value;
+                }
+            }
+            tmp = tmp->next;
+        }
+        tr->index = index;
+        index++;
+        s--;
+    }
 }
 
-// Create sorted array from stack
-long	*create_sorted_array(t_list *stack, int size)
+void first_step(t_list **stack_a, t_list **stack_b)
 {
-	long	*arr;
-	t_list	*current;
-	int		i;
-	int		j;
-	long	temp;
-
-	arr = malloc(sizeof(long) * size);
-	if (!arr)
-		return (NULL);
-	
-	current = stack;
-	i = 0;
-	while (current)
-	{
-		arr[i++] = current->value;
-		current = current->next;
-	}
-	
-	// Bubble sort the array
-	i = 0;
-	while (i < size - 1)
-	{
-		j = 0;
-		while (j < size - i - 1)
-		{
-			if (arr[j] > arr[j + 1])
-			{
-				temp = arr[j];
-				arr[j] = arr[j + 1];
-				arr[j + 1] = temp;
-			}
-			j++;
-		}
-		i++;
-	}
-	
-	return (arr);
+    int i = 0;
+    int size = stack_size(*stack_a);
+    t_list *current = *stack_a;
+    
+    while (size)
+    {
+        current = *stack_a;
+        int index = current->index;
+        
+        if (index <= i)
+        {
+            push(stack_a, stack_b, 'b');
+            i++;
+        }
+        else if (index <= i + 32)
+        {
+            push(stack_a, stack_b, 'b');
+            rotate(stack_b, 'b');
+            i++;
+        }
+        else
+        {
+            rotate(stack_a, 'a');
+        }
+        size--;
+    }
 }
 
-// Sort large stack using radix sort (bit manipulation)
-void	sort_large(t_list **stack_a, t_list **stack_b)
+
+void print_stack(t_list *stack)
 {
-	int		size;
-	int		max_bits;
-	int		i;
-	int		j;
-	long	*sorted;
-	t_list	*current;
-	
-	size = stack_size(*stack_a);
-	sorted = create_sorted_array(*stack_a, size);
-	if (!sorted)
-		return;
-	
-	// Replace values with their indices
-	current = *stack_a;
-	while (current)
-	{
-		current->value = get_index(sorted, current->value, size);
-		current = current->next;
-	}
-	free(sorted);
-	
-	// Calculate max bits needed
-	max_bits = 0;
-	while ((size - 1) >> max_bits)
-		max_bits++;
-	
-	// Perform radix sort
-	i = 0;
-	while (i < max_bits)
-	{
-		j = 0;
-		while (j < size)
-		{
-			// If bit is 0, push to stack_b, else rotate stack_a
-			if (((*stack_a)->value >> i) & 1)
-				rotate(stack_a, 'a');
-			else
-				push(stack_a, stack_b, 'b');
-			j++;
-		}
-		
-		// Push all elements back to stack_a
-		while (*stack_b)
-			push(stack_b, stack_a, 'a');
-		
-		i++;
-	}
+    t_list *current = stack;
+    
+    while (current)
+    {
+        printf("Value: %ld, Index: %d\n", current->value, current->index);
+        current = current->next;
+    }
 }
+

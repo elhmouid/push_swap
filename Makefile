@@ -1,6 +1,6 @@
 CC      = cc
 CFLAGS  = -Wall -Wextra -Werror
-SRC     = main.c parsing.c conversion.c list_utils.c string_utils.c ft_split.c \
+SRC     = push_swap.c parsing.c conversion.c list_utils.c string_utils.c ft_split.c \
           operations.c operations2.c sort.c sort_large.c
 NAME    = push_swap
 OBJ_DIR = obj/
