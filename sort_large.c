@@ -26,7 +26,6 @@ void index_stack(t_list *stack)
         int min = INT_MAX;
 
         tmp = stack;
-
         while (tmp)
         {
             if (tmp->index == -1)
@@ -49,30 +48,25 @@ void first_step(t_list **stack_a, t_list **stack_b)
 {
     int i = 0;
     int size = stack_size(*stack_a);
-    t_list *current = *stack_a;
     
-    while (size)
+    while (size > 0)
     {
-        current = *stack_a;
-        int index = current->index;
-        
-        if (index <= i)
+        if ((*stack_a)->index <= i)
         {
             push(stack_a, stack_b, 'b');
             i++;
         }
-        else if (index <= i + 32)
-        {
+        else if ((*stack_a)->index <= i + 15) {
             push(stack_a, stack_b, 'b');
             rotate(stack_b, 'b');
             i++;
         }
-        else
-        {
+        else {
             rotate(stack_a, 'a');
         }
         size--;
     }
+    print_stack(*stack_b);
 }
 
 

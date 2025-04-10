@@ -79,7 +79,6 @@ long	find_max_value(t_list *stack);
 
 void print_stack(t_list *stack);
 
-
 void first_step(t_list **stack_a, t_list **stack_b);
 
 
