@@ -70,6 +70,7 @@ void	assign_position(t_list *stack_b)
 		tmp = tmp->next;
 	}
 }
+
 int	find_max_value(t_list *stack)
 {
 	int		pos;
@@ -103,13 +104,13 @@ int		find_position_max(t_list *stack)
 void push_back_to_a(t_list **stack_a, t_list **stack_b)
 {
 	int b_size;
+	int max_pos;
     
     while (*stack_b)
     {
 		b_size = stack_size(*stack_b);
 		assign_position(*stack_b);
-		int max_pos = find_position_max(*stack_b);
-		// printf("sizeeeeeee   %d\n", b_size);
+		max_pos = find_position_max(*stack_b);
         if (max_pos <= b_size / 2)
         {
             while (max_pos > 0)
@@ -127,7 +128,6 @@ void push_back_to_a(t_list **stack_a, t_list **stack_b)
             }
         }
         push(stack_b, stack_a, 'a');
-		
     }
 }
 void print_stack(t_list *stack)

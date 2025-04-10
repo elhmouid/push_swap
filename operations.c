@@ -6,7 +6,7 @@
 /*   By: moel-hmo <moel-hmo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 00:01:57 by moel-hmo          #+#    #+#             */
-/*   Updated: 2025/04/10 06:01:20 by moel-hmo         ###   ########.fr       */
+/*   Updated: 2025/04/10 23:22:45 by moel-hmo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@ void	rotate(t_list **stack, char stack_name)
 		ft_putstr_fd("rb\n", 1);
 }
 
-// Rotate both stacks
 void	rotate_both(t_list **stack_a, t_list **stack_b)
 {
 	if ((!stack_a || !*stack_a || !(*stack_a)->next) &&

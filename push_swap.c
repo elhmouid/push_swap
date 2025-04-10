@@ -6,7 +6,7 @@
 /*   By: moel-hmo <moel-hmo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 16:45:36 by moel-hmo          #+#    #+#             */
-/*   Updated: 2025/04/10 23:03:27 by moel-hmo         ###   ########.fr       */
+/*   Updated: 2025/04/10 23:23:18 by moel-hmo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ void sort_stack(t_list **stack_a, t_list **stack_b)
 		push_back_to_a(stack_a, stack_b);
     }
 }
-
 
 int	main(int ac, char **av)
 {
