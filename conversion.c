@@ -6,7 +6,7 @@
 /*   By: moel-hmo <moel-hmo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 21:03:14 by moel-hmo          #+#    #+#             */
-/*   Updated: 2025/04/11 18:03:48 by moel-hmo         ###   ########.fr       */
+/*   Updated: 2025/04/11 21:46:16 by moel-hmo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ long	process_number(char *digit_str, int sign)
 
 	result = 0;
 	i = -1;
-	if ((sign == 1 && ft_strlen(digit_str) > 10) ||
-		(sign == -1 && ft_strlen(digit_str) > 10))
+	if ((sign == 1 && ft_strlen(digit_str) > 10)
+		|| (sign == -1 && ft_strlen(digit_str) > 10))
 	{
 		if (sign == 1)
 			return (LONG_MAX);
@@ -83,9 +83,9 @@ long	ft_atoi(char *str)
 
 int	is_duplicate(t_list *stack)
 {
-	t_list *current;
-	t_list *check;
-	
+	t_list	*current;
+	t_list	*check;
+
 	current = stack;
 	while (current)
 	{
@@ -101,18 +101,18 @@ int	is_duplicate(t_list *stack)
 	return (0);
 }
 
-int check_integers(t_list *stack)
+int	check_integers(t_list *stack)
 {
-    t_list *current;
-    long	value;
+	t_list	*current;
+	long	value;
 
-    current = stack;
-    while (current)
-    {
-        value = current->value;
-        if (value < INT_MIN || value > INT_MAX)
-            return (1);
-        current = current->next;
-    }
-    return (0);
+	current = stack;
+	while (current)
+	{
+		value = current->value;
+		if (value < INT_MIN || value > INT_MAX)
+			return (1);
+		current = current->next;
+	}
+	return (0);
 }

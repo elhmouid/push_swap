@@ -105,7 +105,7 @@ void push_back_to_a(t_list **stack_a, t_list **stack_b)
 {
 	int b_size;
 	int max_pos;
-    
+        
     while (*stack_b)
     {
 		b_size = stack_size(*stack_b);
@@ -130,14 +130,3 @@ void push_back_to_a(t_list **stack_a, t_list **stack_b)
         push(stack_b, stack_a, 'a');
     }
 }
-// void print_stack(t_list *stack)
-// {
-//     t_list *current = stack;
-    
-//     while (current)
-//     {
-//         fprintf(stderr, "Value: %ld, Index: %d\n", current->value, current->index);
-//         current = current->next;
-//     }
-// }
-

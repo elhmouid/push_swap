@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: moel-hmo <moel-hmo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/05 16:45:36 by moel-hmo          #+#    #+#             */
-/*   Updated: 2025/04/11 00:14:57 by moel-hmo         ###   ########.fr       */
+/*   Created: 2025/04/11 21:47:23 by moel-hmo          #+#    #+#             */
+/*   Updated: 2025/04/11 21:47:25 by moel-hmo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,19 +31,19 @@ void free_stack(t_list **stack)
 
 void sort_stack(t_list **stack_a, t_list **stack_b)
 {
-    int size;
-    
-    size = stack_size(*stack_a);
-    if (is_sorted(*stack_a))
-        return;
-    if (size <= 5)
-        sort_small(stack_a, stack_b, size);
-    else
-    {
-        index_stack(*stack_a);
-        first_step(stack_a, stack_b);
+	int size;
+		
+	size = stack_size(*stack_a);
+	if (is_sorted(*stack_a))
+		return;
+	if (size <= 5)
+		sort_small(stack_a, stack_b, size);
+	else
+	{
+		index_stack(*stack_a);
+		first_step(stack_a, stack_b);
 		push_back_to_a(stack_a, stack_b);
-    }
+	}
 }
 
 int	main(int ac, char **av)

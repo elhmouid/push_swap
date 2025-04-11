@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: moel-hmo <moel-hmo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/07 21:06:27 by moel-hmo          #+#    #+#             */
-/*   Updated: 2025/04/10 23:31:29 by moel-hmo         ###   ########.fr       */
+/*   Created: 2025/04/11 21:58:34 by moel-hmo          #+#    #+#             */
+/*   Updated: 2025/04/11 21:58:38 by moel-hmo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ void	ft_error(char *str)
 	exit (1);
 }
 
-void    ft_putchar_fd(char c, int fd)
+void	ft_putchar_fd(char c, int fd)
 {
-    write(fd, &c, 1);
+	write(fd, &c, 1);
 }
 
 int	ft_strlen(char *str)
@@ -33,13 +33,13 @@ int	ft_strlen(char *str)
 	return (i);
 }
 
-void    ft_putstr_fd(char *str, int fd)
+void	ft_putstr_fd(char *str, int fd)
 {
-    int i;
+	int i;
 
-    i = 0;
-    while (str[i])
-        ft_putchar_fd(str[i++], fd);
+	i = 0;
+	while (str[i])
+		ft_putchar_fd(str[i++], fd);
 }
 
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
