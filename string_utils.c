@@ -6,7 +6,7 @@
 /*   By: moel-hmo <moel-hmo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 21:58:34 by moel-hmo          #+#    #+#             */
-/*   Updated: 2025/04/11 22:01:42 by moel-hmo         ###   ########.fr       */
+/*   Updated: 2025/04/11 22:37:38 by moel-hmo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,24 +40,4 @@ void	ft_putstr_fd(char *str, int fd)
 	i = 0;
 	while (str[i])
 		ft_putchar_fd(str[i++], fd);
-}
-
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
-{
-	size_t	i;
-	size_t	j;
-
-	i = 0;
-	j = 0;
-	while (src[j])
-		j++;
-	if (dstsize == 0)
-		return (j);
-	while (src[i] && i < dstsize - 1)
-	{
-		dst[i] = src[i];
-		i++;
-	}
-	dst[i] = '\0';
-	return (j);
 }
