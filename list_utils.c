@@ -6,7 +6,7 @@
 /*   By: moel-hmo <moel-hmo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 22:44:33 by moel-hmo          #+#    #+#             */
-/*   Updated: 2025/04/10 23:48:19 by moel-hmo         ###   ########.fr       */
+/*   Updated: 2025/04/11 22:23:43 by moel-hmo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 t_list	*new_node(long value)
 {
-	t_list *node = malloc(sizeof(t_list));
+	t_list	*node;
+
+	node = malloc(sizeof(t_list));
 	if (!node)
 		return (NULL);
 	node->value = value;
@@ -30,7 +32,7 @@ void	add_back(t_list **stack, t_list *node)
 	if (!*stack)
 	{
 		*stack = node;
-		return;
+		return ;
 	}
 	tmp = *stack;
 	while (tmp->next)
@@ -48,7 +50,7 @@ void	parse_args(char *arg, t_list **stack)
 	i = 0;
 	split = ft_split(arg);
 	if (!split || !stack)
-		return;
+		return ;
 	while (split[i])
 	{
 		value = ft_atoi(split[i]);
@@ -58,7 +60,7 @@ void	parse_args(char *arg, t_list **stack)
 			while (split[i])
 				free(split[i++]);
 			free(split);
-			return;
+			return ;
 		}
 		add_back(stack, node);
 		free(split[i]);

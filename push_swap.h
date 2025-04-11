@@ -15,7 +15,6 @@ typedef struct s_list
 	int				index;
 }	t_list;
 
-// Conversion functions
 long	ft_atoi(char *str);
 int		is_duplicate(t_list *stack);
 int		check_integers(t_list *stack);
@@ -49,6 +48,11 @@ void	reverse_rotate_both(t_list **stack_a, t_list **stack_b);
 int		stack_size(t_list *stack);
 int		is_sorted(t_list *stack);
 t_list	*find_min(t_list *stack);
+
+void	move_max_to_top(t_list **stack_b, int max_pos, int size);
+int	find_position_max(t_list *stack);
+
+void	push_back_to_a(t_list **stack_a, t_list **stack_b);
 
 // Sorting functions
 void	sort_stack(t_list **stack_a, t_list **stack_b);

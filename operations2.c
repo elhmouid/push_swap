@@ -6,7 +6,7 @@
 /*   By: moel-hmo <moel-hmo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 00:11:05 by moel-hmo          #+#    #+#             */
-/*   Updated: 2025/04/11 22:00:33 by moel-hmo         ###   ########.fr       */
+/*   Updated: 2025/04/11 22:27:48 by moel-hmo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,19 @@ void	reverse_rotate(t_list **stack, char stack_name)
 {
 	t_list	*last;
 	t_list	*second_last;
-	
+
 	if (!stack || !*stack || !(*stack)->next)
-		return;
-		
+		return ;
 	last = *stack;
 	second_last = NULL;
-	
 	while (last->next)
 	{
 		second_last = last;
 		last = last->next;
 	}
-	
 	second_last->next = NULL;
 	last->next = *stack;
 	*stack = last;
-	
 	if (stack_name == 'a')
 		ft_putstr_fd("rra\n", 1);
 	else if (stack_name == 'b')
@@ -41,10 +37,9 @@ void	reverse_rotate(t_list **stack, char stack_name)
 
 void	reverse_rotate_both(t_list **stack_a, t_list **stack_b)
 {
-	if ((!stack_a || !*stack_a || !(*stack_a)->next) &&
-		(!stack_b || !*stack_b || !(*stack_b)->next))
-		return;
-	
+	if ((!stack_a || !*stack_a || !(*stack_a)->next)
+		&& (!stack_b || !*stack_b || !(*stack_b)->next))
+		return ;
 	reverse_rotate(stack_a, 0);
 	reverse_rotate(stack_b, 0);
 	ft_putstr_fd("rrr\n", 1);
@@ -88,10 +83,8 @@ t_list	*find_min(t_list *stack)
 
 	if (!stack)
 		return (NULL);
-	
 	min = stack;
 	current = stack;
-	
 	while (current)
 	{
 		if (current->value < min->value)

@@ -6,7 +6,7 @@
 /*   By: moel-hmo <moel-hmo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 00:11:18 by moel-hmo          #+#    #+#             */
-/*   Updated: 2025/04/11 00:06:06 by moel-hmo         ###   ########.fr       */
+/*   Updated: 2025/04/11 22:04:35 by moel-hmo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void	sort_three(t_list **stack)
 	first = (*stack)->value;
 	second = (*stack)->next->value;
 	third = (*stack)->next->next->value;
-
 	if (first > second && second < third && first < third)
 		swap(stack, 'a');
 	else if (first > second && second > third)

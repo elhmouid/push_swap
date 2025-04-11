@@ -6,19 +6,19 @@
 /*   By: moel-hmo <moel-hmo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 21:47:23 by moel-hmo          #+#    #+#             */
-/*   Updated: 2025/04/11 21:47:25 by moel-hmo         ###   ########.fr       */
+/*   Updated: 2025/04/11 22:18:50 by moel-hmo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void free_stack(t_list **stack)
+void	free_stack(t_list **stack)
 {
-	t_list *current;
-	t_list *next;
-	
+	t_list	*current;
+	t_list	*next;
+
 	if (!stack || !*stack)
-		return;
+		return ;
 	current = *stack;
 	while (current)
 	{
@@ -29,13 +29,13 @@ void free_stack(t_list **stack)
 	*stack = NULL;
 }
 
-void sort_stack(t_list **stack_a, t_list **stack_b)
+void	sort_stack(t_list **stack_a, t_list **stack_b)
 {
-	int size;
-		
+	int	size;
+
 	size = stack_size(*stack_a);
 	if (is_sorted(*stack_a))
-		return;
+		return ;
 	if (size <= 5)
 		sort_small(stack_a, stack_b, size);
 	else
@@ -51,7 +51,7 @@ int	main(int ac, char **av)
 	t_list	*stack_a;
 	t_list	*stack_b;
 	int		i;
-	
+
 	stack_a = NULL;
 	stack_b = NULL;
 	if (ac <= 1)

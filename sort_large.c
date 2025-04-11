@@ -1,68 +1,87 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort_large.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: moel-hmo <moel-hmo@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/11 22:05:09 by moel-hmo          #+#    #+#             */
+/*   Updated: 2025/04/11 22:15:56 by moel-hmo         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
-#include <stdio.h>
 
-void index_stack(t_list *stack)
+void	update_index(t_list *stack, int index)
 {
-    int s = stack_size(stack);
-    int index = 0;
-    t_list *tmp = stack;
-    t_list *tr = NULL;
+	t_list	*tmp;
+	t_list	*target;
+	int		min;
 
-    while (s)
-    {
-        int min;
-
-        min = INT_MAX;
-        tmp = stack;
-        while (tmp)
-        {
-            if (tmp->index == -1)
-            {
-                if (tmp->value <= min)
-                {
-                    tr = tmp;
-                    min = tmp->value;
-                }
-            }
-            tmp = tmp->next;
-        }
-        tr->index = index;
-        index++;
-        s--;
-    }
+	min = INT_MAX;
+	target = NULL;
+	tmp = stack;
+	while (tmp)
+	{
+		if (tmp->index == -1 && tmp->value <= min)
+		{
+			min = tmp->value;
+			target = tmp;
+		}
+		tmp = tmp->next;
+	}
+	if (target)
+		target->index = index;
 }
 
-void first_step(t_list **stack_a, t_list **stack_b)
+void	index_stack(t_list *stack)
 {
-    int i = 0;
-    // int size = stack_size(*stack_a);
-    // printf("sizee  %d\n", size);
-	// t_list *tmp = *stack_a;
-	int range = 16;
+	int	size;
+	int	index;
+
+	size = stack_size(stack);
+	index = 0;
+	while (index < size)
+	{
+		update_index(stack, index);
+		index++;
+	}
+}
+
+void	first_step(t_list **stack_a, t_list **stack_b)
+{
+	int	i;
+	int	range;
+
+	i = 0;
+	range = 16;
 	if (stack_size(*stack_a) > 100)
 		range = 32;
-    while (*stack_a)
-    {
-        if ((*stack_a)->index <= i)
-        {
-            push(stack_a, stack_b, 'b');
-            i++;
-        }
-        else if ((*stack_a)->index <= i + range)
-        {
-            push(stack_a, stack_b, 'b');
-            rotate(stack_b, 'b');
-            i++;
-        }
-        else
-            rotate(stack_a, 'a');
-    }
+	while (*stack_a)
+	{
+		if ((*stack_a)->index <= i)
+		{
+			push(stack_a, stack_b, 'b');
+			i++;
+		}
+		else if ((*stack_a)->index <= i + range)
+		{
+			push(stack_a, stack_b, 'b');
+			rotate(stack_b, 'b');
+			i++;
+		}
+		else
+			rotate(stack_a, 'a');
+	}
 }
 
 void	assign_position(t_list *stack_b)
 {
-	int i = 0;
-	t_list *tmp = stack_b;
+	int		i;
+	t_list	*tmp;
+
+	tmp = stack_b;
+	i = 0;
 	while (tmp)
 	{
 		tmp->position = i;
@@ -85,48 +104,4 @@ int	find_max_value(t_list *stack)
 		current = current->next;
 	}
 	return (pos);
-}
-
-int		find_position_max(t_list *stack)
-{
-	int max_value = find_max_value(stack);
-	t_list *tmp = stack;
-
-	while (tmp)
-	{
-		if (tmp->value == max_value)
-			return tmp->position;
-		tmp = tmp->next;
-	}
-	return (-1);
-}
-
-void push_back_to_a(t_list **stack_a, t_list **stack_b)
-{
-	int b_size;
-	int max_pos;
-        
-    while (*stack_b)
-    {
-		b_size = stack_size(*stack_b);
-		assign_position(*stack_b);
-		max_pos = find_position_max(*stack_b);
-        if (max_pos <= b_size / 2)
-        {
-            while (max_pos > 0)
-            {
-                rotate(stack_b, 'b');
-                max_pos--;
-            }
-        }
-        else
-        {
-            while (max_pos < b_size)
-            {
-                reverse_rotate(stack_b, 'b');
-                max_pos++;
-            }
-        }
-        push(stack_b, stack_a, 'a');
-    }
 }

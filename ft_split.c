@@ -6,7 +6,7 @@
 /*   By: moel-hmo <moel-hmo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 12:58:18 by moel-hmo          #+#    #+#             */
-/*   Updated: 2025/04/10 01:41:48 by moel-hmo         ###   ########.fr       */
+/*   Updated: 2025/04/11 22:22:28 by moel-hmo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,15 @@ static void	free_split(char **str, int j)
 
 static int	count_words(const char *s)
 {
-	int	i = 0;
-	int	count = 0;
+	int	i;
+	int	count;
 
+	i = 0;
+	count = 0;
 	while (s[i])
 	{
-		if ((s[i] != ' ' && s[i] != '\t') &&
-			(i == 0 || s[i - 1] == ' ' || s[i - 1] == '\t'))
+		if ((s[i] != ' ' && s[i] != '\t')
+			&& (i == 0 || s[i - 1] == ' ' || s[i - 1] == '\t'))
 			count++;
 		i++;
 	}
@@ -36,21 +38,22 @@ static int	count_words(const char *s)
 
 static int	get_next_word(const char *s, int *i, char **word)
 {
-	int	len = 0;
-	int	start = *i;
-	int	j = 0;
+	int	len;
+	int	start;
+	int	j;
 
+	len = 0;
+	j = 0;
+	start = *i;
 	while (s[*i] && s[*i] != ' ' && s[*i] != '\t')
 	{
 		len++;
 		(*i)++;
 	}
 	*i = start;
-
 	*word = malloc(sizeof(char) * (len + 1));
 	if (!(*word))
 		return (-1);
-
 	while (j < len)
 	{
 		(*word)[j] = s[*i + j];
@@ -63,9 +66,11 @@ static int	get_next_word(const char *s, int *i, char **word)
 
 static char	**process_split(const char *s, char **str)
 {
-	int	i = 0;
-	int	j = 0;
+	int	i;
+	int	j;
 
+	i = 0;
+	j = 0;
 	while (s[i])
 	{
 		while (s[i] == ' ' || s[i] == '\t')
