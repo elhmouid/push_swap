@@ -6,7 +6,7 @@
 /*   By: moel-hmo <moel-hmo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 21:03:14 by moel-hmo          #+#    #+#             */
-/*   Updated: 2025/04/10 23:56:06 by moel-hmo         ###   ########.fr       */
+/*   Updated: 2025/04/11 18:03:48 by moel-hmo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ long	process_number(char *digit_str, int sign)
 	int		i;
 
 	result = 0;
-	i = 0;
+	i = -1;
 	if ((sign == 1 && ft_strlen(digit_str) > 10) ||
 		(sign == -1 && ft_strlen(digit_str) > 10))
 	{
@@ -48,7 +48,7 @@ long	process_number(char *digit_str, int sign)
 		else
 			return (LONG_MIN);
 	}
-	while (digit_str[i])
+	while (digit_str[++i])
 	{
 		if (result > (LONG_MAX - (digit_str[i] - '0')) / 10)
 		{
@@ -58,7 +58,6 @@ long	process_number(char *digit_str, int sign)
 				return (LONG_MIN);
 		}
 		result = (result * 10) + (digit_str[i] - '0');
-		i++;
 	}
 	return (result * sign);
 }
